@@ -1,0 +1,11 @@
+* Interface
+  + Quick timer (units in minutes)
+  + Pre-set timer with names
+    Save, sync these if possible, fewest clicks that can be done
+  + Show remaining time in tooltip (05:10 left)
+  + Start / Stop / Pause / Restart timer
+
+
+* Inspirations:
+  + Dynamic icon:
+    http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/pageAction/set_icon/background.html?content-type=text/plain

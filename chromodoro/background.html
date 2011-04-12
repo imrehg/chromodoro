@@ -1,0 +1,45 @@
+<html>
+<head>
+<script>
+  var min = 0;
+  var max = 5;
+
+  var current = min;
+  var canvas;
+  var canvasContext;
+
+  function init() {
+    canvas = document.getElementById('icon');
+    canvasContext = canvas.getContext('2d');
+    <!-- chrome.browserAction.onClicked.addListener(updateIcon); -->
+    updateIcon();
+  }
+
+  function updateIcon() {
+      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+      <!-- canvasContext.fillStyle = 'rgba(70,0,0,0.1)'; -->
+      <!-- canvasContext.fillRect(1+current*2,1+current*2,10+current*2,10+current*2); -->
+      canvasContext.beginPath();
+      canvasContext.moveTo(10,10);
+      canvasContext.arc(10, 10, 8, 1.5*Math.PI, Math.PI*(2*current/max-0.5), true);
+      canvasContext.moveTo(10,10);
+      canvasContext.closePath();
+      canvasContext.fillStyle="rgba(80, 0, 0, 0.5)";
+      canvasContext.fill();
+
+      chrome.browserAction.setIcon({imageData:canvasContext.getImageData(0, 0,
+      canvas.width,canvas.height)});
+      chrome.browserAction.setBadgeText({text: (max-current)+""});
+      current++;
+
+      if (current > max) {
+         current = min;
+      }
+      t = setTimeout("updateIcon()",60*1000);
+  }
+
+</script>
+</head>
+<body onload="init();">
+<canvas id="icon" width="19" height="19"></canvas>
+</html>
